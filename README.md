@@ -1,21 +1,19 @@
-# Issam Soubra - AI & Data Engineering Portfolio
+# Issam Soubra — AI & Data Engineering
 
-Welcome to my GitHub portfolio! I'm Issam Soubra, an aspiring AI and Data Engineer with a passion for building intelligent systems and optimizing data workflows. This repository showcases a selection of my projects, demonstrating my skills in various programming languages, data structures, algorithms, and AI concepts.
+Hey, I'm Issam. I build AI systems and data pipelines, and this is where I keep my work.
 
-## Skills
+I'm based in Istanbul, currently working toward my BSc while picking up real experience on the side. Most of what I know came from building things, breaking them, and figuring out why — not from a classroom.
 
-*   **Programming Languages:** Python, Java, C++
-*   **AI/ML Concepts:** Task Automation, Sentiment Analysis, Simulation
-*   **Data Structures & Algorithms:** Sorting, Searching, Data Visualization
-*   **Web Technologies:** HTML, CSS, JavaScript
-*   **Version Control:** Git, GitHub
+## What I work with
+
+Python is my main language. I also write Java and C++ when the project calls for it. On the AI/ML side I've been deep in prompt engineering, LLM architecture, and MLOps — mostly through Google Cloud and Vertex AI. I'm comfortable with the full stack from raw data to deployed model.
 
 ## Projects
 
-Here are some of the key projects featured in this portfolio:
+*   **AI Task Automator:** Python script that handles file organization and runs basic sentiment analysis. Built it because I was tired of doing that stuff by hand.
+*   **DSA Visualizer:** Java backend, HTML/JS frontend. Makes sorting and searching algorithms actually visible. Good for learning, good for showing people what's happening under the hood.
+*   **High-Performance Simulation Engine:** C++ engine I wrote with a focus on memory efficiency and computational accuracy. Grew out of work I did on an orbital debris collision simulation.
 
-*   **AI Task Automator:** A Python script leveraging AI concepts for intelligent file organization and basic sentiment analysis.
-*   **DSA Visualizer:** A Java and HTML/JavaScript project designed to visualize data structures and algorithms.
-*   **High-Performance Simulation Engine:** A C++ engine focused on efficient memory management and computational logic for simulations.
+## Get in touch
 
-Feel free to explore my repositories and connect with me!
+Feel free to dig through the repos. If something looks interesting or you want to talk through a project, reach out — I'm always open to it.
