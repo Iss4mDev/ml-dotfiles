@@ -1,8 +1,9 @@
 /**
- * Data Structures & Algorithms Visualizer (Core Logic)
+ * Algorithm Logic Playground
  * Author: Issam Soubra
- * Description: A Java-based implementation of core data structures and algorithms, 
- * designed to be integrated with a web-based visualization interface.
+ * 
+ * This file contains the core logic for the sorting and searching algorithms.
+ * I've implemented these to serve as the backend for the visualizer.
  */
 
 import java.util.Arrays;
@@ -10,55 +11,67 @@ import java.util.Arrays;
 public class DSAVisualizer {
 
     /**
-     * Bubble Sort implementation with step-by-step logging for visualization.
+     * A classic Bubble Sort. It's not the fastest, but it's great for 
+     * visualizing how elements "bubble up" to their correct positions.
      */
     public static void bubbleSort(int[] arr) {
         int n = arr.length;
+        boolean swapped;
         for (int i = 0; i < n - 1; i++) {
+            swapped = false;
             for (int j = 0; j < n - i - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
-                    // Swap elements
+                    // Swap the elements
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
-                    System.out.println("Swapped: " + Arrays.toString(arr));
+                    swapped = true;
+                    System.out.println("Swapping " + arr[j+1] + " and " + arr[j] + ": " + Arrays.toString(arr));
                 }
             }
+            // If no two elements were swapped by inner loop, then break
+            if (!swapped) break;
         }
     }
 
     /**
-     * Binary Search implementation.
+     * Binary Search: A much faster way to find an item in a sorted list.
+     * It keeps splitting the search area in half until it finds the target.
      */
     public static int binarySearch(int[] arr, int target) {
-        int left = 0;
-        int right = arr.length - 1;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
+        int low = 0;
+        int high = arr.length - 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
             if (arr[mid] == target) {
                 return mid;
             }
+
             if (arr[mid] < target) {
-                left = mid + 1;
+                low = mid + 1;
             } else {
-                right = mid - 1;
+                high = mid - 1;
             }
         }
-        return -1;
+        return -1; // Target not found
     }
 
     public static void main(String[] args) {
-        int[] data = {64, 34, 25, 12, 22, 11, 90};
-        System.out.println("Original array: " + Arrays.toString(data));
-        bubbleSort(data);
-        System.out.println("Sorted array: " + Arrays.toString(data));
+        int[] myData = {64, 34, 25, 12, 22, 11, 90};
+        
+        System.out.println("Starting with: " + Arrays.toString(myData));
+        bubbleSort(myData);
+        System.out.println("Sorted result: " + Arrays.toString(myData));
 
-        int target = 22;
-        int result = binarySearch(data, target);
-        if (result != -1) {
-            System.out.println("Element " + target + " found at index " + result);
+        int targetValue = 22;
+        int foundIndex = binarySearch(myData, targetValue);
+        
+        if (foundIndex != -1) {
+            System.out.println("Found " + targetValue + " at index " + foundIndex + ".");
         } else {
-            System.out.println("Element " + target + " not found");
+            System.out.println("Could not find " + targetValue + " in the list.");
         }
     }
 }

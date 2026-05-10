@@ -3,92 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSA Visualizer - Issam Soubra</title>
+    <title>Algorithm Visualizer | Issam Soubra</title>
     <style>
+        :root {
+            --primary-color: #4a90e2;
+            --bg-color: #f4f7f6;
+            --bar-color: #34495e;
+            --highlight-color: #e74c3c;
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            margin: 0;
+            background-color: var(--bg-color);
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 40px;
+            margin: 0;
         }
         h1 {
             color: #2c3e50;
+            margin-bottom: 10px;
         }
-        .visualizer-container {
-            width: 80%;
-            height: 300px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+        p {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        #visualizer {
             display: flex;
             align-items: flex-end;
-            justify-content: space-around;
+            height: 300px;
+            gap: 8px;
             padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
         }
         .bar {
-            width: 30px;
-            background-color: #3498db;
+            width: 35px;
+            background-color: var(--bar-color);
             transition: height 0.3s ease, background-color 0.3s ease;
             border-radius: 4px 4px 0 0;
         }
         .controls {
-            margin-top: 20px;
+            display: flex;
+            gap: 15px;
         }
         button {
-            padding: 10px 20px;
+            padding: 12px 24px;
             font-size: 16px;
-            background-color: #2ecc71;
+            cursor: pointer;
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            border-radius: 6px;
+            transition: background 0.2s;
         }
         button:hover {
-            background-color: #27ae60;
+            background-color: #357abd;
+        }
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
         }
     </style>
 </head>
 <body>
-    <h1>Data Structures & Algorithms Visualizer</h1>
-    <div class="visualizer-container" id="visualizer">
-        <!-- Bars will be generated here -->
-    </div>
+    <h1>Sorting Visualizer</h1>
+    <p>A simple tool to watch how algorithms organize data in real-time.</p>
+    
+    <div id="visualizer"></div>
+    
     <div class="controls">
-        <button onclick="startVisualization()">Start Bubble Sort</button>
+        <button id="startBtn" onclick="runBubbleSort()">Run Bubble Sort</button>
+        <button onclick="resetData()">Reset Data</button>
     </div>
 
     <script>
-        const data = [64, 34, 25, 12, 22, 11, 90];
+        let data = [64, 34, 25, 12, 22, 11, 90, 45, 72];
         const visualizer = document.getElementById('visualizer');
+        const startBtn = document.getElementById('startBtn');
 
-        function renderBars(arr) {
+        function renderBars(arr, highlightIndices = []) {
             visualizer.innerHTML = '';
-            arr.forEach(value => {
+            arr.forEach((value, index) => {
                 const bar = document.createElement('div');
                 bar.className = 'bar';
-                bar.style.height = `${value * 2}px`;
+                bar.style.height = `${value * 2.5}px`;
+                if (highlightIndices.includes(index)) {
+                    bar.style.backgroundColor = 'var(--highlight-color)';
+                }
                 visualizer.appendChild(bar);
             });
         }
 
-        function startVisualization() {
-            // Simple animation logic for demonstration
+        function resetData() {
+            data = Array.from({length: 10}, () => Math.floor(Math.random() * 90) + 10);
+            renderBars(data);
+            startBtn.disabled = false;
+        }
+
+        async function runBubbleSort() {
+            startBtn.disabled = true;
             let arr = [...data];
-            let i = 0;
-            const interval = setInterval(() => {
-                if (i >= arr.length) {
-                    clearInterval(interval);
-                    return;
+            let n = arr.length;
+            
+            for (let i = 0; i < n; i++) {
+                for (let j = 0; j < n - i - 1; j++) {
+                    renderBars(arr, [j, j + 1]);
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    
+                    if (arr[j] > arr[j + 1]) {
+                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                    }
                 }
-                // (Simplified bubble sort step for visualization)
-                renderBars(arr);
-                i++;
-            }, 500);
+            }
+            renderBars(arr);
+            startBtn.disabled = false;
         }
 
         renderBars(data);
