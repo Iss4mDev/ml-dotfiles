@@ -1,66 +1,50 @@
-# High-Performance Simulation Engine
+Here you go:
 
-## Project Description
+High-Performance Simulation Engine
+Project Description
+I built this simulation engine in C++ to explore what's actually possible when you take memory management seriously. The goal was simple: make something fast, make it reliable, and understand every byte of what's happening under the hood. It's been one of my most hands-on projects for bridging low-level programming with real computational logic.
+Features
 
-This project presents a C++ engine meticulously designed for high-performance simulations. It demonstrates robust principles of efficient memory management and computational logic, making it suitable for scenarios requiring fast and reliable simulations.
+Particle-Based Simulation: Tracks how particles move and interact with each other over time.
+Manual Memory Control: Written in C++ so I have direct control over how resources are allocated and freed, no garbage collector babysitting me.
+Euler Integration: Straightforward method for stepping particle positions forward each frame; simple but effective for this scale.
+Boundary Collision Logic: Particles detect edges and bounce back, keeping the simulation contained and realistic.
+Built-in Performance Timing: I wired in timing from the start so I could actually measure speed and spot bottlenecks early.
 
-## Features
+Technologies Used
 
-*   **Particle-Based Simulation:** Simulates the movement and interaction of particles.
-*   **Efficient Memory Management:** Implemented in C++ for optimal performance and control over system resources.
-*   **Euler Integration:** Uses a simple Euler integration method for updating particle positions.
-*   **Basic Boundary Checks:** Includes logic for particles to 
-bounce back when hitting boundaries.
-*   **Performance Measurement:** Includes basic timing mechanisms to evaluate simulation speed.
+C++
+iostream for input/output operations
+vector for managing the dynamic particle list
+cmath powers the math behind movement calculations
+chrono for recording and measuring simulation performance
 
-## Technologies Used
+How to Use
 
-*   C++
-*   `iostream` for input/output operations
-*   `vector` for dynamic arrays (particles)
-*   `cmath` for mathematical functions
-*   `chrono` for performance timing
+Clone the repository:
 
-## How to Use
-
-1.  **Clone the repository:**
-
-    ```bash
-    git clone https://github.com/Iss4mDev/ml-dotfiles.git
+bash    git clone https://github.com/Iss4mDev/ml-dotfiles.git
     cd ml-dotfiles
-    ```
 
-2.  **Compile the engine:**
+Compile the engine:
 
-    ```bash
-    g++ simulation_engine.cpp -o simulation_engine
-    ```
+bash    g++ simulation_engine.cpp -o simulation_engine
 
-3.  **Run the simulation:**
+Run the simulation:
 
-    ```bash
-    ./simulation_engine
-    ```
-
-## Example
-
-```cpp
-int main() {
+bash    ./simulation_engine
+Example
+cppint main() {
     SimulationEngine engine(0.01);
     
     // Add some initial particles
     engine.addParticle(10, 10, 1.5, 2.0, 1.0);
     engine.addParticle(50, 50, -1.0, 0.5, 1.5);
     engine.addParticle(80, 20, 0.5, -1.5, 0.8);
-
     std::cout << "Starting simulation..." << std::endl;
     engine.run(1000);
     engine.displayState();
-
     return 0;
 }
-```
-
-## Author
-
+Author
 Issam Soubra
