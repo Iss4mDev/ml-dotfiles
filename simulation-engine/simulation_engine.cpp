@@ -1,9 +1,12 @@
-/**
- * Particle Physics Sandbox
+/* 
+ * ---------------------------------------------------------
+ * Simple Particle Sim
  * Author: Issam Soubra
- * 
- * This is a lightweight C++ engine I built to simulate basic particle physics.
- * It handles movement, collisions with boundaries, and tracks performance.
+ * ---------------------------------------------------------
+ * I built this to play around with basic physics in C++.
+ * It just moves some "particles" around a box and makes 
+ * them bounce when they hit the edges.
+ * ---------------------------------------------------------
  */
 
 #include <iostream>
@@ -12,81 +15,83 @@
 #include <chrono>
 #include <iomanip>
 
-// Represents a single object in our simulation
-struct Particle {
-    double x, y;      // Position
-    double vx, vy;    // Velocity
-    double mass;      // Weight/Mass
+// This represents a single dot moving in our world
+struct MyParticle {
+    double x, y;      // Where it is
+    double dx, dy;    // How fast it's moving (velocity)
+    double weight;    // Its mass
 };
 
-class PhysicsEngine {
+class MySim {
 private:
-    std::vector<Particle> particles;
-    double dt; // Time step for each update
+    std::vector<MyParticle> dots;
+    double time_step;
 
 public:
-    PhysicsEngine(double timeStep) : dt(timeStep) {}
+    MySim(double ts) : time_step(ts) {}
 
-    // Add a new particle to the world
-    void spawnParticle(double x, double y, double vx, double vy, double mass) {
-        particles.push_back({x, y, vx, vy, mass});
+    // Add a new dot to the simulation
+    void addDot(double x, double y, double dx, double dy, double w) {
+        dots.push_back({x, y, dx, dy, w});
     }
 
-    // Update the positions of all particles
-    void step() {
-        for (auto& p : particles) {
-            // Move the particle based on its velocity
-            p.x += p.vx * dt;
-            p.y += p.vy * dt;
+    // Move everything forward by one tick
+    void update() {
+        for (auto& d : dots) {
+            // Update position based on speed
+            d.x += d.dx * time_step;
+            d.y += d.dy * time_step;
 
-            // Simple boundary logic: bounce off the walls (0-100 range)
-            if (p.x < 0 || p.x > 100) {
-                p.vx *= -0.9; // Lose a little energy on bounce
-                p.x = (p.x < 0) ? 0 : 100;
+            // Bounce logic for the box (0 to 100)
+            // I added a little friction so they lose speed on impact
+            if (d.x < 0 || d.x > 100) {
+                d.dx *= -0.85; 
+                d.x = (d.x < 0) ? 0 : 100;
             }
-            if (p.y < 0 || p.y > 100) {
-                p.vy *= -0.9; // Lose a little energy on bounce
-                p.y = (p.y < 0) ? 0 : 100;
+            if (d.y < 0 || d.y > 100) {
+                d.dy *= -0.85;
+                d.y = (d.y < 0) ? 0 : 100;
             }
         }
     }
 
-    // Run the simulation for a set number of iterations
-    void run(int iterations) {
-        std::cout << "Running simulation for " << iterations << " steps..." << std::endl;
+    // Run the whole thing for a while
+    void start(int ticks) {
+        std::cout << "Starting sim for " << ticks << " ticks..." << std::endl;
         
-        auto start = std::chrono::high_resolution_clock::now();
-        for (int i = 0; i < iterations; ++i) {
-            step();
+        auto t1 = std::chrono::high_resolution_clock::now();
+        for (int i = 0; i < ticks; ++i) {
+            update();
         }
-        auto end = std::chrono::high_resolution_clock::now();
+        auto t2 = std::chrono::high_resolution_clock::now();
         
-        std::chrono::duration<double> elapsed = end - start;
-        std::cout << "Done! Took " << std::fixed << std::setprecision(4) << elapsed.count() << " seconds." << std::endl;
+        std::chrono::duration<double> diff = t2 - t1;
+        std::cout << "Finished! It took about " << std::fixed << std::setprecision(5) << diff.count() << " seconds." << std::endl;
     }
 
-    // Print where everything is right now
-    void printStatus() {
-        std::cout << "\n--- Current Particle States ---" << std::endl;
-        for (size_t i = 0; i < particles.size(); ++i) {
-            std::cout << "Particle #" << (i + 1) << " is at [" 
-                      << std::setprecision(2) << particles[i].x << ", " 
-                      << particles[i].y << "]" << std::endl;
+    // Show me where the dots are now
+    void showResults() {
+        std::cout << "\n--- Final Positions ---" << std::endl;
+        for (size_t i = 0; i < dots.size(); ++i) {
+            std::cout << "Dot " << (i + 1) << " is at: (" 
+                      << std::setprecision(2) << dots[i].x << ", " 
+                      << dots[i].y << ")" << std::endl;
         }
     }
 };
 
 int main() {
-    // Initialize the engine with a 0.01s time step
-    PhysicsEngine engine(0.01);
+    // Set up the sim with a small time step
+    MySim sim(0.01);
     
-    // Drop some particles into the mix
-    engine.spawnParticle(10.0, 10.0, 2.5, 3.0, 1.0);
-    engine.spawnParticle(50.0, 50.0, -1.2, 0.8, 1.5);
-    engine.spawnParticle(85.0, 20.0, 0.7, -2.0, 0.5);
+    // Throw in some random dots
+    sim.addDot(12.0, 15.0, 3.0, 4.0, 1.0);
+    sim.addDot(45.0, 60.0, -2.0, 1.5, 2.0);
+    sim.addDot(80.0, 10.0, 1.0, -3.0, 0.5);
 
-    engine.run(5000);
-    engine.printStatus();
+    // Run it and see what happens
+    sim.start(10000);
+    sim.showResults();
 
     return 0;
 }

@@ -1,77 +1,74 @@
-/**
- * Algorithm Logic Playground
+/* 
+ * ---------------------------------------------------------
+ * Sorting & Searching Logic
  * Author: Issam Soubra
- * 
- * This file contains the core logic for the sorting and searching algorithms.
- * I've implemented these to serve as the backend for the visualizer.
+ * ---------------------------------------------------------
+ * Just some core algorithms I wrote in Java. I use these 
+ * as the "brain" for my visualizer projects.
+ * ---------------------------------------------------------
  */
 
 import java.util.Arrays;
 
 public class DSAVisualizer {
 
-    /**
-     * A classic Bubble Sort. It's not the fastest, but it's great for 
-     * visualizing how elements "bubble up" to their correct positions.
-     */
-    public static void bubbleSort(int[] arr) {
-        int n = arr.length;
-        boolean swapped;
+    // A simple bubble sort. It's slow but really easy to understand.
+    public static void myBubbleSort(int[] stuff) {
+        int n = stuff.length;
         for (int i = 0; i < n - 1; i++) {
-            swapped = false;
+            boolean didSwap = false;
             for (int j = 0; j < n - i - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    // Swap the elements
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                    swapped = true;
-                    System.out.println("Swapping " + arr[j+1] + " and " + arr[j] + ": " + Arrays.toString(arr));
+                if (stuff[j] > stuff[j + 1]) {
+                    // Swap them around
+                    int temp = stuff[j];
+                    stuff[j] = stuff[j + 1];
+                    stuff[j + 1] = temp;
+                    didSwap = true;
+                    
+                    // Print it out so we can see what's happening
+                    System.out.println("Swapping: " + Arrays.toString(stuff));
                 }
             }
-            // If no two elements were swapped by inner loop, then break
-            if (!swapped) break;
+            // If we didn't swap anything, it's already sorted!
+            if (!didSwap) break;
         }
     }
 
-    /**
-     * Binary Search: A much faster way to find an item in a sorted list.
-     * It keeps splitting the search area in half until it finds the target.
-     */
-    public static int binarySearch(int[] arr, int target) {
+    // Binary search is way faster than looking through everything one by one.
+    public static int findMe(int[] sortedStuff, int target) {
         int low = 0;
-        int high = arr.length - 1;
+        int high = sortedStuff.length - 1;
 
         while (low <= high) {
             int mid = low + (high - low) / 2;
 
-            if (arr[mid] == target) {
-                return mid;
+            if (sortedStuff[mid] == target) {
+                return mid; // Found it!
             }
 
-            if (arr[mid] < target) {
+            if (sortedStuff[mid] < target) {
                 low = mid + 1;
             } else {
                 high = mid - 1;
             }
         }
-        return -1; // Target not found
+        return -1; // Not in the list
     }
 
     public static void main(String[] args) {
-        int[] myData = {64, 34, 25, 12, 22, 11, 90};
+        int[] myNumbers = {64, 34, 25, 12, 22, 11, 90};
         
-        System.out.println("Starting with: " + Arrays.toString(myData));
-        bubbleSort(myData);
-        System.out.println("Sorted result: " + Arrays.toString(myData));
+        System.out.println("Starting with: " + Arrays.toString(myNumbers));
+        myBubbleSort(myNumbers);
+        System.out.println("All sorted: " + Arrays.toString(myNumbers));
 
-        int targetValue = 22;
-        int foundIndex = binarySearch(myData, targetValue);
+        int lookFor = 22;
+        int pos = findMe(myNumbers, lookFor);
         
-        if (foundIndex != -1) {
-            System.out.println("Found " + targetValue + " at index " + foundIndex + ".");
+        if (pos != -1) {
+            System.out.println("Nice! Found " + lookFor + " at index " + pos);
         } else {
-            System.out.println("Could not find " + targetValue + " in the list.");
+            System.out.println("Bummer, " + lookFor + " isn't in there.");
         }
     }
 }
