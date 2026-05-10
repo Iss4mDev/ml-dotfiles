@@ -1,54 +1,46 @@
 # AI Task Automator
 
-## Project Description
+This is a collection of Python tools I put together to handle the repetitive parts of my day. It's got a file organizer to keep my workspace from becoming a mess and a quick sentiment checker to gauge the "vibe" of any text I throw at it.
 
-This project features a versatile Python script designed to automate common tasks by leveraging AI concepts. It includes functionalities for intelligent file organization and basic sentiment analysis for text processing.
+## What it Does
+- **Smart File Organizer:** It looks at your files and automatically moves them into folders like `Docs`, `Pics`, or `DevStuff` based on their extensions.
+- **Vibe Checker:** A simple rule-based sentiment analyzer that tells you if a piece of text feels positive, negative, or just neutral.
 
-## Features
+## Built With
+- **Python 3**
+- `os` & `shutil` for moving files around.
+- `re` for cleaning up text during analysis.
+- `pathlib` for modern, reliable path handling.
 
-*   **Intelligent File Organization:** Automatically sorts files into categorized subfolders based on their extensions (e.g., Documents, Images, Code, Data, Others).
-*   **Basic Sentiment Analysis:** Performs rule-based sentiment analysis on text inputs, classifying them as Positive, Negative, or Neutral.
+## How to Use It
 
-## Technologies Used
-
-*   Python
-*   `os` module for file system operations
-*   `shutil` module for high-level file operations
-*   `re` module for regular expressions (used in sentiment analysis)
-
-## How to Use
-
-1.  **Clone the repository:**
-
-    ```bash
-    git clone https://github.com/Iss4mDev/ml-dotfiles.git
-    cd ml-dotfiles
-    ```
-
-2.  **Run the script:**
-
-    ```bash
-    python3 ai_task_automator.py
-    ```
-
-    *Note: The example usage in the `if __name__ == "__main__":` block demonstrates both file organization (commented out) and sentiment analysis.*
-
-## Example
-
-```python
-if __name__ == "__main__":
-    # Example usage
-    # To organize files in a directory:
-    # automator = TaskAutomator("/path/to/your/directory")
-    # automator.organize_files()
-    
-    # To perform sentiment analysis:
-    automator = TaskAutomator(".") # Using current directory for demonstration
-    sample_text = "The new AI model is great and has achieved significant success!"
-    sentiment = automator.basic_sentiment_analysis(sample_text)
-    print(f"Sentiment of \'{sample_text}\': {sentiment}")
+### 1. Get the Code
+```bash
+git clone https://github.com/Iss4mDev/issam-soubra-portfolio.git
+cd issam-soubra-portfolio/ai-task-automator
 ```
 
-## Author
+### 2. Run the Script
+```bash
+python3 ai_task_automator.py
+```
 
-Issam Soubra
+## Code Snippet
+Here's how you can use the `MyHelper` class in your own scripts:
+
+```python
+from ai_task_automator import MyHelper
+
+# Initialize the helper for the current directory
+me = MyHelper('.')
+
+# Check the sentiment of some text
+text = "This project is coming along great!"
+print(f"Vibe: {me.check_the_vibe(text)}")
+
+# Uncomment to actually organize your files
+# me.clean_my_folder()
+```
+
+---
+**Author:** Issam Soubra

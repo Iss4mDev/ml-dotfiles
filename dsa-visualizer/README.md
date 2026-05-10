@@ -1,45 +1,36 @@
-# DSA Visualizer
+# Algorithm Visualizer
 
-## Project Description
-
-This project combines Java for core data structure and algorithm implementations with HTML/CSS/JavaScript for a web-based visualization interface. It aims to provide a visual understanding of how algorithms like Bubble Sort operate.
+I created this project to make learning Data Structures and Algorithms (DSA) a bit more intuitive. It's one thing to read about Bubble Sort in a book, but it's another thing entirely to watch the bars move and see the sorting happen in real-time.
 
 ## Features
+- **Real-time Sorting:** Watch a Bubble Sort algorithm organize data right in your browser.
+- **Interactive UI:** You can generate new random data and start the sorting process with a click.
+- **Java Backend Logic:** The core algorithm logic is written in Java, serving as the foundation for the visualization.
 
-*   **Bubble Sort Visualization:** Demonstrates the step-by-step process of Bubble Sort with visual feedback.
-*   **Binary Search Implementation:** Includes a functional implementation of Binary Search.
-*   **Web-based Interface:** An interactive HTML page to trigger and display visualizations.
+## Tech Stack
+- **Frontend:** HTML5, CSS3 (Modern Flexbox layout), and Vanilla JavaScript.
+- **Backend:** Java (for the core algorithm implementations).
 
-## Technologies Used
+## How to Run It
 
-*   **Backend (Core Logic):** Java
-*   **Frontend (Visualization):** HTML, CSS, JavaScript
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Iss4mDev/issam-soubra-portfolio.git
+cd issam-soubra-portfolio/dsa-visualizer
+```
 
-## How to Use
+### 2. View the Visualization
+Simply open the `dsa_visualizer.html` file in any modern web browser (Chrome, Firefox, Safari, etc.). No server setup is required!
 
-1.  **Clone the repository:**
+### 3. Run the Java Logic (Optional)
+If you want to see the algorithm run in your terminal:
+```bash
+javac dsa_visualizer.java
+java DSAVisualizer
+```
 
-    ```bash
-    git clone https://github.com/Iss4mDev/ml-dotfiles.git
-    cd ml-dotfiles
-    ```
+## How it Works
+The visualizer uses an asynchronous JavaScript function to step through the sorting process, updating the DOM (the bars you see on screen) at each step so you can follow along with the logic.
 
-2.  **Run the Java backend (for core algorithm execution, if desired separately):**
-
-    ```bash
-    javac dsa_visualizer.java
-    java DSAVisualizer
-    ```
-
-3.  **Open the visualization in your browser:**
-
-    Open `dsa_visualizer.html` in any modern web browser to view the interactive visualization.
-
-## Current Limitations
-
-The current web visualization for Bubble Sort is a simplified animation shell. While it renders bars and provides a 
-start button, the actual sorting logic (swapping elements) is not yet visually represented in real-time within the HTML. It currently functions more as a placeholder for a future, more dynamic visualization.
-
-## Author
-
-Issam Soubra
+---
+**Author:** Issam Soubra

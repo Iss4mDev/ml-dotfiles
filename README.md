@@ -1,19 +1,24 @@
-# Issam Soubra — AI & Data Engineering
+# Issam Soubra | AI & Data Engineering Portfolio
 
-Hey, I'm Issam. I build AI systems and data pipelines, and this is where I keep my work.
+Hey there! I'm Issam. I'm a developer focused on building AI systems and efficient data pipelines. This repository is a collection of some of my favorite projects where I've explored everything from low-level C++ simulations to high-level AI automation.
 
-I'm based in Istanbul, currently working toward my BSc while picking up real experience on the side. Most of what I know came from building things, breaking them, and figuring out why — not from a classroom.
+I'm currently based in Istanbul, working toward my BSc while building real-world projects on the side. I'm a big believer in learning by doing—most of what I know comes from building things, breaking them, and then figuring out how to fix them.
 
-## What I work with
+## What's in Here?
 
-Python is my main language. I also write Java and C++ when the project calls for it. On the AI/ML side I've been deep in prompt engineering, LLM architecture, and MLOps — mostly through Google Cloud and Vertex AI. I'm comfortable with the full stack from raw data to deployed model.
+| Project | Description | Tech Stack |
+| :--- | :--- | :--- |
+| [**AI Task Automator**](./ai-task-automator) | A Python-based assistant for file organization and sentiment analysis. | Python, `shutil`, `re` |
+| [**DSA Visualizer**](./dsa-visualizer) | An interactive tool to visualize how sorting algorithms work in real-time. | Java, HTML, JS, CSS |
+| [**Simulation Engine**](./simulation-engine) | A high-performance C++ engine for particle physics simulations. | C++, `chrono`, `vector` |
 
-## Projects
+## My Toolkit
+- **Languages:** Python (Primary), Java, C++.
+- **AI/ML:** Prompt Engineering, LLM Architectures, MLOps.
+- **Cloud:** Google Cloud Platform (Vertex AI).
 
-*   **AI Task Automator:** Python script that handles file organization and runs basic sentiment analysis. Built it because I was tired of doing that stuff by hand.
-*   **DSA Visualizer:** Java backend, HTML/JS frontend. Makes sorting and searching algorithms actually visible. Good for learning, good for showing people what's happening under the hood.
-*   **High-Performance Simulation Engine:** C++ engine I wrote with a focus on memory efficiency and computational accuracy. Grew out of work I did on an orbital debris collision simulation.
+## Let's Connect
+I'm always down to talk about tech, AI, or interesting projects. Feel free to explore the code, and if you have any questions or just want to chat, don't hesitate to reach out!
 
-## Get in touch
-
-Feel free to dig through the repos. If something looks interesting or you want to talk through a project, reach out — I'm always open to it.
+---
+**Author:** Issam Soubra
