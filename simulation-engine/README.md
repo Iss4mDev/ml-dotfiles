@@ -1,5 +1,3 @@
-Here you go:
-
 High-Performance Simulation Engine
 Project Description
 I built this simulation engine in C++ to explore what's actually possible when you take memory management seriously. The goal was simple: make something fast, make it reliable, and understand every byte of what's happening under the hood. It's been one of my most hands-on projects for bridging low-level programming with real computational logic.
